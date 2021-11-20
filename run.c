@@ -2,7 +2,7 @@
 Compile and run C or C++ code.
 Run [run] help for more info.
 
-Params: [run] [-d] (debug mode) [file].c[pp] [params] (params to be parsed to file.c[pp])
+Params: [sudo] (run said file with sudo permission) [run] [-d] (debug mode) [file].c[pp] [params] (params to be parsed to file.c[pp])
 
 */
 
