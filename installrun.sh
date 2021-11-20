@@ -1,5 +1,3 @@
-# https://raw.githubusercontent.com/Chriss4123/run-c/main/run.c?token=AUY3C66YL42WAYALNHEDKJ3BTFJTU
-
 if [[ "$EUID" != 0 ]]
 then
     echo "Sudo permission is required to install this program.";
