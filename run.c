@@ -195,7 +195,8 @@ int main(int argc, char** argv)
                 printf("%s\n", "Error allocating memory!");
                 return -1;
             }
-            sprintf(args, "%s%s%s%s", args, "\"", argv[i], "\" ");
+            char* argstemp = args;
+            sprintf(args, "%s%s%s%s", argstemp, "\"", argv[i], "\" ");
         }
             if (geteuid() == 0) {
             sprintf(cmd, "%s%s%s%s", "sudo ./", findChars(argv[file], '.'), " ", args);
