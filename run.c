@@ -52,7 +52,7 @@ void sigInt(int signal)
 
 char* findChars(char* string, char ch) 
 {
-    char* value = malloc(strlen(string));
+    char* value = calloc(strlen(string), sizeof(char));
 
     for (long unsigned int i = 0; i < strlen(string); i++) {
         if (string[i] != ch) {
@@ -127,8 +127,8 @@ int main(int argc, char** argv)
     
         // If all checks are passed, their code is piped to GCC
 
-        char* buff = malloc(strlen(argv[file])+200);
-        char* result = malloc(strlen(argv[file])+200);
+        char* buff = calloc(strlen(argv[file])+200, sizeof(char));
+        char* result = calloc(strlen(argv[file])+200, sizeof(char));
 
         if (!buff)
         {
@@ -158,7 +158,7 @@ int main(int argc, char** argv)
 
         if (file == 2) 
         {
-            char* cmd = malloc(strlen(findChars(argv[file], '.')+strlen(argv[file]+200)));
+            char* cmd = calloc(strlen(findChars(argv[file], '.'))+strlen(argv[file]+200), sizeof(char));
             if (!cmd) {
                 printf("%s\n", "Error allocating memory!");
                 return -1;
@@ -168,14 +168,14 @@ int main(int argc, char** argv)
             return 0;
         }
 
-        char* cmd = malloc(strlen(findChars(argv[file], '.'))+200);
+        char* cmd = calloc(strlen(findChars(argv[file], '.'))+200, sizeof(char));
         if (!cmd) {
             printf("%s\n", "Error allocating memory!");
             return -1;
         }
 
         if (argc > 2) {
-        char* args = malloc(1000);
+        char* args = calloc(1024, sizeof(char));
 
         if (!args) {
                 printf("%s\n", "Error allocating memory!");
@@ -214,8 +214,10 @@ int main(int argc, char** argv)
         free(buff);
         free(result);
 
-        system(cmd);
-        return 0;
+        int ret = system(cmd);
+        
+        return WEXITSTATUS(ret);
+
 
     } else {
     printf("%s%s%s\n", "File ", argv[file], " doesn't exist.");
